@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+.form {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255,173,132);
+    background: linear-gradient(90deg, rgba(255,173,132,1) 12%, rgba(255,196,126,1) 52%, rgba(255,227,130,1) 100%);
+}
+
+.form form {
+    width: 70%;
+    padding: 60px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 60px;
+}
+
+.personal-data {
+    width: 45%;
+}
+
+.address {
+    width: 45%;
+}
+
+.form h2 {
+    font-size: 33px;
+    margin-bottom: 40px;
+    color: #ac6e50;
+}
+
+.form fieldset {
+    margin-bottom: 20px;
+    border: none;
+}
+
+.form label {
+    font-size: 20px;
+    color: #575454;
+}
+
+.form input {
+   width: 93%;
+   font-size: 16px;
+   border-radius: 15px;
+   padding: 8px 12px;
+   outline: none;
+   border: none;
+   background-color: #e6e5e1;
+   border: 2px solid #e6e5e1;
+}
+
+.form input:hover, #form input:focus {
+    background-color: #FFC47E;
+    border: 2px solid #FFAD84;
+}
+
+.span-required {
+    display: none;
+    font-size: 14px;
+    margin: 3px 0 0 1px;
+    color: #e63636;
+}
+
+.button {
+    width: 100%;
+    text-align: center;
+}
+
+.button button {
+    padding: 12px 45px;
+    font-size: 18px;
+    color: #575454;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    background-color: #e6e5e1;
+}
+
+.button button:hover {
+    background-color: #ac6e50;
+    color: #FFF;
+}
