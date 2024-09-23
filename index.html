@@ -26,22 +26,26 @@
 
                 <fieldset>
                     <label for="nascimento">Data de nascimento:</label>
-                    <input type="date" id="nascimento" oninput="birthData()">
+                    <input type="text" id="date" class="required" maxlength="10" oninput="birthData()">
+                    <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
                     <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf">
+                    <input type="text" id="cpf" class="required" autocomplete="off" maxlength="14" oninput="cpfValidate()">
+                    <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
                     <label for="tel">Número de telefone:</label>
-                    <input type="tel" id="tel">
+                    <input type="text" id="tel" class="required" autocomplete="off" maxlength="14" oninput="telValidate()">
+                    <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
                     <label for="">Nome da mãe:</label>
-                    <input type="text" id="">
+                    <input type="text" id="" class="required">
+                    <span class="span-required"></span>
                 </fieldset>
             </div>
 
