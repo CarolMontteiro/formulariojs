@@ -11,6 +11,10 @@ form.addEventListener('submit', (event) => {
     birthData();
     cpfValidate();
     telValidate();
+    nameMotherValidate();
+    cepValidate();
+    bairroValidate();
+    ruaValidate();
 })
 
 function setErro(index) {
@@ -116,17 +120,96 @@ function telValidate() {
         setErro(4);
         span[4].textContent = "Adicione um número valido";
     }else if(!telRegex.test(campo[4].value)) {
-        console.log('valido')
         removeErro(4);
         span[4].textContent = "";
     }
-    // cpf.addEventListener('keypress', () => {
-    //     let cpfLength = cpf.value.length;
 
-    //     if(cpfLength === 3 || cpfLength === 7) {
-    //         cpf.value += '.';
-    //     }else if( cpfLength === 11) {
-    //         cpf.value += '-';
-    //     }
-    // })
+    tel.addEventListener('input', () => {
+        let telLength = tel.value;
+
+        if(telLength.length == 2) {
+            tel.value += ') ';
+            tel.value = '(' + tel.value;
+        }else if( telLength.length == 10) {
+            tel.value += '-';
+        }
+    });
+}
+
+function nameMotherValidate() {
+    const nomeMae = document.getElementById('nomemae').value;
+    if(nomeMae.trim() === ""){
+        setErro(5);
+        span[5].textContent = "O campo não pode estar vazio";
+        
+    }else if(campo[5].value.length < 3) {
+        setErro(5);
+        span[5].textContent = "O nome deve ter no mínimo 3 caracteres";
+    }else{
+        removeErro(5);
+        span[5].textContent = "";
+    }
+}
+
+//        ENDEREÇO             #######################################################################################
+
+function cepValidate() {
+    const cepValidate = document.getElementById('cep').value;
+    
+    if(cepValidate === "") {
+        setErro(6);
+        span[6].textContent = "O campo não pode estar vazio";
+    }else {
+        removeErro(6);
+        span[6].textContent = "";
+    }
+}
+
+function pesquisacep(valor) {
+     var cep = valor.replace(/\D/g, '');
+
+     if (cep != "") {
+         var validacep = /^[0-9]{8}$/;
+
+         if(validacep.test(cep)) {
+             document.getElementById('rua').value = "...";
+             document.getElementById('bairro').value = "...";
+             document.getElementById('cidade').value = "...";
+             document.getElementById('uf').value = "...";
+
+             var script = document.createElement('script');
+
+             script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+             document.body.appendChild(script);
+
+         }
+         else {
+             limpa_formulario_cep();
+             alert("Formato de CEP inválido.");
+         }
+     }
+     else {
+         limpa_formulario_cep();
+     }
+}
+
+function limpa_formulario_cep() {
+    document.getElementById('rua').value=("");
+    document.getElementById('bairro').value=("");
+    document.getElementById('cidade').value=("");
+    document.getElementById('uf').value=("");
+}
+
+function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+        document.getElementById('rua').value=(conteudo.logradouro);
+        document.getElementById('bairro').value=(conteudo.bairro);
+        document.getElementById('cidade').value=(conteudo.localidade);
+        document.getElementById('uf').value=(conteudo.uf);
+    }
+    else {
+        limpa_formulario_cep();
+        alert("CEP não encontrado.");
+    }
 }

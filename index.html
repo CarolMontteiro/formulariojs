@@ -38,13 +38,13 @@
 
                 <fieldset>
                     <label for="tel">Número de telefone:</label>
-                    <input type="text" id="tel" class="required" autocomplete="off" maxlength="14" oninput="telValidate()">
+                    <input type="text" id="tel" class="required" autocomplete="off" maxlength="15" oninput="telValidate()">
                     <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
                     <label for="">Nome da mãe:</label>
-                    <input type="text" id="" class="required">
+                    <input type="text" id="nomemae" class="required" oninput="nameMotherValidate()">
                     <span class="span-required"></span>
                 </fieldset>
             </div>
@@ -53,12 +53,13 @@
                 <h2>Endereço</h2>
                 <fieldset>
                     <label for="cep">CEP:</label>
-                    <input type="text" id="cep">
+                    <input type="text" id="cep"  class="required" oninput="cepValidate()" onblur="pesquisacep(this.value)">
+                     <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
                     <label for="estado">Estado:</label>
-                    <input type="text" id="estado">
+                    <input type="text" id="uf">
                 </fieldset>
 
                 <fieldset>
@@ -69,11 +70,13 @@
                 <fieldset>
                     <label for="bairro">Bairro:</label>
                     <input type="text" id="bairro">
+                    <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
                     <label for="rua">Rua</label>
                     <input type="text" id="rua">
+                    <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
