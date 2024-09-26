@@ -3,19 +3,53 @@ const form = document.getElementById('form');
 const campo = document.getElementsByClassName('required');
 const span = document.getElementsByClassName('span-required');
 
-
 form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    nameValidate(); 
-    emailValidate();
-    birthData();
-    cpfValidate();
-    telValidate();
-    nameMotherValidate();
-    cepValidate();
-    bairroValidate();
-    ruaValidate();
+
+    event.preventDefault(); 
+
+    let arrayErros = [];
+
+    var checkEmptyCamps = false;
+
+    for (let index = 0; index < campo.length; index++) {
+        
+        if(campo[index].value === '') {
+
+            alert('existe campos vazios');
+
+            checkEmptyCamps = true;
+            
+            break;
+        }
+    }
+
+    if(!checkEmptyCamps) {
+
+        for (let index = 0; index < span.length; index++) {
+
+            if(!span[index].textContent.trim() === '') {
+    
+                setErro(index);
+
+                arrayErros.push(span[index].textContent);
+            }
+        }
+    }
+
+    console.log(arrayErros);
+
+    if(arrayErros.length === 0) {
+
+        form.submit();
+    }
 })
+
+function bloquearLetras(event) {
+    const key = event.key;
+    if (!/[0-9]/.test(key) && key !== 'Backspace' && key !== 'Delete' && key !== 'ArrowLeft' && key !== 'ArrowRight' && key !== 'Tab') {
+      event.preventDefault();
+    }
+}
 
 function setErro(index) {
     campo[index].style.border = '2px solid #e63636';
@@ -27,20 +61,35 @@ function removeErro(index) {
     span[index].style.display = 'none';
 }
 
-function nameValidate() {
-    const nome = document.getElementById('nome').value;
-    if(nome.trim() === ""){
-        setErro(0);
-        span[0].textContent = "O campo não pode estar vazio";
-        
-    }else if(campo[0].value.length < 3) {
-        setErro(0);
-        span[0].textContent = "O nome deve ter no mínimo 3 caracteres";
-    }else{
-        removeErro(0);
-        span[0].textContent = "";
+function validarCampoNome(idCampo, indiceSpan) {
+    const campoValor = document.getElementById(idCampo).value;
+    
+    if (campoValor.trim() === "") {
+        setErro(indiceSpan);
+        span[indiceSpan].textContent = "O campo não pode estar vazio";
+    } else if (campoValor.length < 3) {
+        setErro(indiceSpan);
+        span[indiceSpan].textContent = "O nome deve ter no mínimo 3 caracteres";
+    } else {
+        removeErro(indiceSpan);
+        span[indiceSpan].textContent = "";
     }
 }
+
+// function nameValidate() {
+//     const nome = document.getElementById('nome').value;
+//     if(nome.trim() === ""){
+//         setErro(0);
+//         span[0].textContent = "O campo não pode estar vazio";
+        
+//     }else if(campo[0].value.length < 3) {
+//         setErro(0);
+//         span[0].textContent = "O nome deve ter no mínimo 3 caracteres";
+//     }else{
+//         removeErro(0);
+//         span[0].textContent = "";
+//     }
+// }
 
 function emailValidate() {
     const email = document.getElementById('email').value;
@@ -73,7 +122,7 @@ function birthData() {
         span[2].textContent = "Adicione uma data valido";
     }
 
-    date.addEventListener('keypress', () => {
+    date.addEventListener('keypress', () => { // O keypress, dispara quando uma tecla que retorna um valor de caractere é pressionada. Por exemplo, se a tecla "a" for pressionada, o evento disparará a letra "a", que retorna o valor 97. Este evento não funciona quando a tecla "shift" é pressionada, pois ela não retorna um valor.
         let dateLength = date.value.length;
 
         if(dateLength === 2 || dateLength === 5) {
@@ -124,7 +173,7 @@ function telValidate() {
         span[4].textContent = "";
     }
 
-    tel.addEventListener('input', () => {
+    tel.addEventListener('input', () => { // O addEventListener, registrar uma espera de evento
         let telLength = tel.value;
 
         if(telLength.length == 2) {
@@ -136,20 +185,20 @@ function telValidate() {
     });
 }
 
-function nameMotherValidate() {
-    const nomeMae = document.getElementById('nomemae').value;
-    if(nomeMae.trim() === ""){
-        setErro(5);
-        span[5].textContent = "O campo não pode estar vazio";
+// function nameMotherValidate() {
+//     const nomeMae = document.getElementById('nomemae').value;
+//     if(nomeMae.trim() === ""){
+//         setErro(5);
+//         span[5].textContent = "O campo não pode estar vazio";
         
-    }else if(campo[5].value.length < 3) {
-        setErro(5);
-        span[5].textContent = "O nome deve ter no mínimo 3 caracteres";
-    }else{
-        removeErro(5);
-        span[5].textContent = "";
-    }
-}
+//     }else if(campo[5].value.length < 3) {
+//         setErro(5);
+//         span[5].textContent = "O nome deve ter no mínimo 3 caracteres";
+//     }else{
+//         removeErro(5);
+//         span[5].textContent = "";
+//     }
+// }
 
 //        ENDEREÇO             #######################################################################################
 
@@ -163,10 +212,18 @@ function cepValidate() {
         removeErro(6);
         span[6].textContent = "";
     }
+
+    cep.addEventListener('input', () => { // O addEventListener, registrar uma espera de evento
+        let cepLength = cep.value;
+
+        if(cepLength.length == 5) {
+            cep.value += '-';
+        }
+    });
 }
 
 function pesquisacep(valor) {
-     var cep = valor.replace(/\D/g, '');
+     let cep = valor.replace(/\D/g, ''); // o replace com o regex (/\D/g, ""), ele vai substituir os dados que não são numéricos por ""(nada)
 
      if (cep != "") {
          var validacep = /^[0-9]{8}$/;
