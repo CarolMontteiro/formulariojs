@@ -14,7 +14,7 @@
                 <h2>Dados pessoais</h2>
                 <fieldset>
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" class="required" oninput="validarCampoNome('nome', 0);">
+                    <input type="text" id="nome" class="required" oninput="validarNome('nome', 0)">
                     <span class="span-required"></span>
                 </fieldset>
 
@@ -26,25 +26,25 @@
 
                 <fieldset>
                     <label for="nascimento">Data de nascimento:</label>
-                    <input type="text" id="date" class="required" maxlength="10" oninput="birthData()" onkeydown="bloquearLetras(event)">
+                    <input type="text" id="date" class="required" maxlength="10" oninput="birthData()" onkeydown="blockLetters(event)">
                     <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
                     <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" class="required" autocomplete="off" maxlength="14" oninput="cpfValidate()" onkeydown="bloquearLetras(event)">
+                    <input type="text" id="cpf" class="required" autocomplete="off" maxlength="14" oninput="cpfValidate()" onkeydown="blockLetters(event)">
                     <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
                     <label for="tel">Número de telefone:</label>
-                    <input type="text" id="tel" class="required" autocomplete="off" maxlength="15" oninput="telValidate()" onkeydown="bloquearLetras(event)">
+                    <input type="text" id="tel" class="required" autocomplete="off" maxlength="15" oninput="telValidate()" onkeydown="blockLetters(event)">
                     <span class="span-required"></span>
                 </fieldset>
 
                 <fieldset>
                     <label for="">Nome da mãe:</label>
-                    <input type="text" id="nomemae" class="required" oninput="validarCampoNome('nomemae', 5);">
+                    <input type="text" id="nomemae" class="required" oninput="validarNome('nomemae', 5)">
                     <span class="span-required"></span>
                 </fieldset>
             </div>
@@ -53,7 +53,7 @@
                 <h2>Endereço</h2>
                 <fieldset>
                     <label for="cep">CEP:</label>
-                    <input type="text" id="cep"  class="required" maxlength="9" oninput="cepValidate()" onblur="pesquisacep(this.value)" onkeydown="bloquearLetras(event)">
+                    <input type="text" id="cep"  class="required" maxlength="9" oninput="cepValidate()" onblur="pesquisacep(this.value)" onkeydown="blockLetters(event)">
                      <span class="span-required"></span>
                 </fieldset>
 
