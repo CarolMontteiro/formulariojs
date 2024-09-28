@@ -37,9 +37,9 @@ function nameValidateField(index, valueName) {
     }
 }
 
-function validarNome(inputId, index) {
-    const valor = document.getElementById(inputId).value;
-    nameValidateField(index, valor);
+function nameValidate(inputId, index) {
+    const valueName = document.getElementById(inputId).value;
+    nameValidateField(index, valueName);
 }
 
 function validateField(inputId, index, regex, mensageErro) {
